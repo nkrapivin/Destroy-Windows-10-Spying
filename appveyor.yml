@@ -1,0 +1,16 @@
+version: 99.99.{build}
+os: Visual Studio 2015
+platform:
+  - Any CPU
+configuration: Debug
+before_build:
+  - nuget restore
+build:
+  project: DWS.sln
+  verbosity: minimal
+after_build:
+  - cd DWS
+  - 7z a -tzip ..\DWS-Debug.zip .\bin\Debug\*
+artifacts:
+  - path: DWS-Debug.zip
+    name: DWS
